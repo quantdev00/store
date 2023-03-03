@@ -13,28 +13,38 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Style.blueColor,
+        onPressed: () {},
+        child: const Text(
+          "+",
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 50, left: 15, right: 20),
         child: Column(
           children: [
             //* App bar
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  onFocusChange: null,
-                  child: Column(
-                    children: [
-                      lineSettings,
-                      const SizedBox(height: 10),
-                      lineSettings,
-                      const SizedBox(height: 10),
-                      lineSettings,
-                    ],
+            Stack(children: [
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    onFocusChange: null,
+                    child: Column(
+                      children: [
+                        lineSettings,
+                        const SizedBox(height: 10),
+                        lineSettings,
+                        const SizedBox(height: 10),
+                        lineSettings,
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ]),
             //* App bar end
             const SizedBox(height: 20),
             //* Next session
@@ -86,12 +96,26 @@ class _SearchViewState extends State<SearchView> {
             ),
             //*End of seconde section
             const SizedBox(height: 20),
-            // ListView.builder(
-            //   itemBuilder: (context, index) => Row(
-            //     children: [],
-            //   ),
-            //   itemCount: 3,
-            // ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const ClampingScrollPhysics(),
+              itemBuilder: (context, index) => Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text("Paracetamol"),
+                    Text("Price : 200FC"),
+                  ],
+                ),
+              ),
+              itemCount: 50,
+            ),
           ],
         ),
       ),
